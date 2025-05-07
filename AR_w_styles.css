@@ -1,0 +1,85 @@
+a:hover {background-color:#000000; color:#ffffff}
+.blklink {color:#ffffcc; font-weight:bold}
+.blklink2 {color:#CAE66A;}
+p {font-family:verdana, arial; font-size:11px; color:#000000; margin-left:20px; margin-right:20px;}
+.whitetext {font-family:verdana, arial; font-size:11px; color:#ffffff; margin-left:20px; margin-right:20px;}
+.Largewhitetext {font-family:verdana, arial; font-size:12px; color:#ffffff; margin-left:20px; margin-right:20px;}
+
+.spotlight {font-family:verdana, arial; font-size:12px; color:#ffffff; margin-left:10px; margin-right:10px;}
+td {font-family:verdana, arial; font-size:11px; color:#000000;}
+hr {width:90%; align:center}
+input {font-family:verdana, arial; font-size:11px;}
+textarea {font-family:verdana, arial; font-size:11px;}
+select {font-family:verdana, arial; font-size:11px;}
+ul {font-family:verdana, arial; font-size:11px; margin-left:20px; margin-right:20px;}
+li {font-family:verdana, arial; font-size:11px; margin-left:40px;}
+h3 {font-family:verdana, arial; font-size:16px;  color:#000099; margin-left:20px; margin-right:20px; margin-bottom:-10px;}
+.header {font-family:verdana, arial; font-size:30px; color:#ffffff; margin-left:100px; }
+.pagehead {font-family:verdana, arial; font-size:30px; color:#99ccff;}
+.section {font-family:verdana, arial; font-size:16px; color:#666600; font-weight:bold; margin-bottom:0}
+.stolen  {font-family:verdana, arial; font-size:16px; color:#ff0000; font-weight:bold}
+.tiny {font-family:verdana, arial; font-size:11px; line-height:14px; color:#000099; font-weight:bold}
+.tiny A  {
+	font-family:verdana, arial;
+	font-size:11px;
+	line-height:14px;
+	color:#000099;
+	font-weight:bold;
+	text-decoration : underline;
+}
+
+.tiny2 {font-family:verdana, arial; font-size:10px; color:#cccc99;}
+.tiny3 {
+margin-top: 6px;
+	font-family:tahoma,verdana, arial;
+	font-size:10px;
+	color: Navy;
+}
+.imagedesc {
+	font-family:verdana, arial;
+	font-size:10px;
+	color: #005500;
+}
+.blktext {font-family:verdana, arial; font-size:11px; color:#000000;}
+.comments {font-family:verdana, arial; font-size:12px; color:#000000; margin-left:50px; margin-right:50px; margin-top:20px; margin-bottom:0px;}
+.author {font-family:verdana, arial; text-align:right; font-weight:bold; font-size:11px; font-style:italic; color:#333300; margin-left:50px; margin-right:50px;margin-top:0px}
+.shadow {filter:progid:DXImageTransform.Microsoft.Shadow(strength=5,color=#000000, direction=130);border:0}
+.50w {width:50px}
+.100w {width:100px}
+.180w {width:180px}
+.300w {width:300px}
+.460w {width:460px}
+
+.PCL {
+		font-family: Verdana,Arial,Helvetica;
+		font-style: none;
+		font-weight: normal;
+		text-decoration: none;
+		font-size: 8pt;
+}
+
+.PTT {
+		font-family: Verdana,Arial,Helvetica;
+		font-size: 8pt;
+}
+
+.PST {
+		font-family: Verdana,Arial,Helvetica;
+		font-size: 8pt;
+}
+
+.grid
+{
+	FONT-SIZE: 10pt;
+	FONT-FAMILY: Tahoma, 'Arial CE', 'MS Sans Serif', Arial;
+	BACKGROUND-COLOR: #E4E4CB;
+	text-align:left;
+}
+
+.TABLE TH
+{
+	FONT-SIZE: 10pt;
+	FONT-FAMILY: Tahoma, 'Arial CE', 'MS Sans Serif', Arial;
+	text-align:left;
+	font-weight:bold;
+}

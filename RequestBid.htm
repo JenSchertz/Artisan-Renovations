@@ -1,0 +1,528 @@
+<html><head>
+<title>Artisan Renovations - Request a Bid</title>
+
+<META NAME="AUTHOR" CONTENT="Jennifer Schertz">
+<META NAME="KEYWORDS" CONTENT="Artisan Renovations, Houston, Katy, residential, remodeling, custom cabinetry, cabinetry, kitchens, bathrooms, baths, renovations, woodwork, contractor, room additions, request a bid, proposal, estimate">
+<META NAME="DESCRIPTION" CONTENT="Artisan Renovations provides greater Houston area homeowners with the best design, complete project management, and the finest craftsmanship in residential remodeling.  A fully licensed and insured general contracing firm, we offer many services including kitchen and bath remodeling, room additions and custom cabinetry and woodwork. Customer service and satisfaction is our top priority.">
+<META NAME="ROBOTS" CONTENT="INDEX,FOLLOW">
+
+<LINK REL='STYLESHEET' HREF='AR_w_styles.css' TYPE='text/css'> 
+
+<script language="JavaScript">
+<!--
+function Go(){return}
+
+function SetTradeMenu(theVal)
+{
+	var theField
+	
+	theField=document.theForm.Project
+	SetMenu(theField,theVal);
+}
+
+// Image Roll-overs
+if (document.images) {
+
+  logo1on = new Image();  
+  logo1on.src = "images/AR_small_olive.jpg";  
+ 
+  logo1off = new Image();
+  logo1off.src = "images/AR_small.jpg";  
+  }
+
+function changeImages() {
+  if (document.images) {
+    for (var i=0; i<changeImages.arguments.length; i+=2) {
+      document[changeImages.arguments[i]].src = eval(changeImages.arguments[i+1] + ".src");
+    }  
+	}
+}
+// -->
+</script>
+
+
+<script language="JavaScript">
+<!-- Validation Script
+// object definition
+function validation(realName, formEltName, eltType, upToSnuff, format) {
+  this.realName = realName;
+  this.formEltName = formEltName;
+  this.eltType = eltType;
+  this.upToSnuff = upToSnuff;
+  this.format = format;}
+
+// create a new object for each form element to be validated
+var project = new validation('Type of Project', 'Project', 'text', 'isSelect(formObj)', null);
+var status = new validation('Design Status', 'Status', 'text', 'isSelect(formObj)', null);
+var startdate = new validation('StartDate', 'StartDate', 'text', 'isSelect(formObj)', null);
+var flexible = new validation('Your Timing is Flexible', 'TimingFlexible', 'radio', 'isRadio(formObj)', null);
+var HaveNames = new validation('if you are working with other contractors', 'HaveNames', 'radio', 'isRadio(formObj)', null);
+var HaveBid = new validation('if you have already received a bid', 'HaveBid', 'radio', 'isRadio(formObj)', null);
+var description = new validation('Project Details', 'description', 'text', 'isText(str)', null);
+var address = new validation('Project Adress', 'street', 'text', 'isText(str)', null);
+var city = new validation('City', 'city', 'text', 'isText(str)', null);
+var zip = new validation('Project Zip Code', 'zip', 'text', 'isText(str)', null);
+var first = new validation('First Name', 'fname', 'text', 'isText(str)', null);
+var last = new validation('Last Name', 'lname', 'text', 'isText(str)', null);
+var phone = new validation('Phone Number', 'phone', 'text', 'isText(str)', null);
+var besttime = new validation('Best Time to Call', 'besttime', 'text', 'isText(str)', null);
+
+var elts = new Array(
+               project,
+               status,
+			   startdate,
+			   flexible,
+               HaveNames,
+               HaveBid,
+			   description,
+			   address,
+			   city,
+			   zip,
+			   first,
+			   last,
+			   phone,
+			   besttime);
+
+var allAtOnce = false;
+
+/***************************************************************
+ ** change text for alerts here
+ ** unspecified field (text): "Please include your [field name]."
+ ** unspecified field (other): "Please indicate [field name]."
+ ** invalid text field entries: "[field value] is an invalid [field name]!"
+ ** help with format: "Use this format: "
+***************************************************************/
+var beginRequestAlertForText = "Please include your ";
+var beginRequestAlertGeneric = "Please indicate ";
+var endRequestAlert = ".";
+var beginInvalidAlert = " is an invalid ";
+var endInvalidAlert = "!";
+var beginFormatAlert = "  Use this format: ";
+
+/***************************************************************
+** functions to validate the string or form object passed in,
+** and return true or false based on user input
+***************************************************************/
+function isText(str) {
+  return (str != "");
+}
+
+function isSelect(formObj) {  
+  return (formObj.selectedIndex != 0);
+}
+
+function isRadio(formObj) {
+  for (j=0; j<formObj.length; j++) {
+      if (formObj[j].checked) {
+            return true;
+      }               
+	}
+  return false;
+}
+
+function isCheck(formObj, form, begin, num) {
+  for (j=begin; j<begin+num; j++) {
+      if (form.elements[j].checked) {
+            return true;
+         }
+       }
+    return false;
+}
+
+function isEmail(str) {
+  return ((str != "") && (str.indexOf("@") != -1) && (str.indexOf(".") != -1));
+  }
+
+function isZipCode(str) {
+  var l = str.length;
+    if ((l != 5) && (l != 10)) {return false }
+    for (j=0; j<l; j++) {
+        if ((l == 10) && (j == 5)) {
+           if (str.charAt(j) != "-") {return false }
+         } else {
+               if ((str.charAt(j) < "0") || (str.charAt(j) > "9")) { return false }
+				}
+           }
+    return true;
+}
+
+function isPhoneNum(str) {
+  if (str.length != 12) { return false }
+    for (j=0; j<str.length; j++) {
+        if ((j == 3) || (j == 7)) {
+              if (str.charAt(j) != "-") { return false }
+                  } else {
+                        if ((str.charAt(j) < "0") || (str.charAt(j) > "9")) { return false }
+                         }
+                   }
+    return true
+}
+
+/****************
+validate form
+****************/
+function validateForm(form) {
+  var formEltName = "";
+  var formObj = "";
+  var str = "";
+  var realName = "";
+  var alertText = "";
+  var firstMissingElt = null;
+  var hardReturn = "\r\n";
+    for (i=0; i<elts.length; i++) {
+        formEltName = elts[i].formEltName;
+        formObj = eval("form." + formEltName);
+        realName = elts[i].realName;
+     
+        if (elts[i].eltType == "text") {
+			str = formObj.value;
+		if (eval(elts[i].upToSnuff)) continue;
+		
+		if (str == "") {		
+		   if (allAtOnce) {
+		      alertText += beginRequestAlertForText + realName + endRequestAlert + hardReturn;
+		      if (firstMissingElt == null) {firstMissingElt = formObj};
+			  } else {
+			  alertText = beginRequestAlertForText + realName + endRequestAlert + hardReturn;
+			  alert(alertText);
+			  }
+			} else {
+			  if (allAtOnce) {
+			      alertText += str + beginInvalidAlert + realName + endInvalidAlert + hardReturn;
+			     } else {
+			      alertText = str + beginInvalidAlert + realName + endInvalidAlert + hardReturn;
+			     }
+			     if (elts[i].format != null) {
+			      alertText += beginFormatAlert + elts[i].format + hardReturn;
+			     }
+			     if (allAtOnce) {
+			        if (firstMissingElt == null) {firstMissingElt = formObj};
+			     } else {
+			       alert(alertText);
+		         }
+		       }
+		    } else {
+		      if (eval(elts[i].upToSnuff)) continue;
+		      if (allAtOnce) {
+				alertText += beginRequestAlertGeneric + realName + endRequestAlert + hardReturn;
+				if (firstMissingElt == null) {firstMissingElt = formObj};
+		      } else {
+		        alertText = beginRequestAlertGeneric + realName + endRequestAlert + hardReturn;
+		        alert(alertText);
+		      }
+		    }
+	{
+      var goToObj = (allAtOnce) ? firstMissingElt : formObj;
+      if (goToObj.select) goToObj.select();
+      if (goToObj.focus) goToObj.focus();
+    }
+
+		    if (!allAtOnce) {return false};
+		    }
+		  if (allAtOnce) {
+			   if (alertText != "") {
+			      alert(alertText);
+			      return false;
+			   }
+		  }
+
+return true; 
+}
+// -->
+</script>
+
+</head>
+
+<body bgcolor="#ffffff" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<script type='text/javascript' src='exmplmenu_var.js'></script>
+<script type='text/javascript' src='menu_com.js'></script>
+
+<table width="100%" align="center" valign="center" border=0 cellpadding="0" cellspacing="0">
+	<tr>
+	<td width="350" height="95" bgcolor="#000000" valign="bottom"><img src="images/Spacer.gif" width="20" height="1" border=0 alt="">
+<a href="index.html" onMouseover="changeImages('logo1', 'logo1on')" onMouseout="changeImages('logo1', 'logo1off')"><img align="top" name="logo1" src="images/AR_small.jpg" width="94" height="60" alt="" border=0></a>
+<img src="images/AR-text.gif" alt="" border=0></td>
+<td height="95" bgcolor="#000000" valign="bottom" align="left">
+<object codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#4,0,0,0" width="450" height="60" align=left>
+    <param name="SRC" value="requestbid.swf">
+    <PARAM NAME="loop" VALUE="false">
+    <embed src="requestbid.swf" pluginspage="http://www.macromedia.com/shockwave/download/" type="application/x-shockwave-flash" width="450" height="60" align="left">
+    </embed>
+   </object>
+   </td>
+	</tr>
+	</table>
+	<table width="100%" height=100% align="center" valign="center" border="0" cellpadding="0" cellspacing="0">
+	<tr>
+	<tr>
+	<td colspan="2" bgcolor="#CCCC66" height="2"><img src="images/Spacer.gif" width="5" height="2" border="0" alt=""></td>
+	</tr>
+	<tr>
+	<td bgcolor="#000000" height="2"><img src="images/Spacer.gif" width="5" height="2" border="0" alt=""></td><td bgcolor="#000000" height="2"><img src="images/Spacer.gif" width="5" height="2" border="0" alt=""></td>
+	</tr>
+	<tr>
+	<td width="170" align="center" bgcolor="#000000">
+	<table border="0" cellpadding="0" cellspacing="0">
+	<tr>
+	<td width="5">&nbsp;</td>
+	<td width="135" align="center">
+<div align="center" class="tiny2" style="position:absolute; top:400px; left:20; width:130">
+<i>Artisan Renovations</i><br>
+(281) 693-1989<br>
+1260 F.M. 1463,<br>Suite 1000<br>
+Katy, TX 77494<br>
+<a class="blklink" href="mailto:SSchertz@ar-remodeling.com">Contact Us</a><br></div>
+<br><br></td>
+	<td width="10">&nbsp;</td>
+	</tr>
+	</table></td>
+	<td bgcolor="#ffffff" valign="top"><br>
+    <P class="section"><B>Start Here: Tell us about your project</B></p>
+	<P>(Items in <b>bold</b> are required fields.)</P>
+   <BR>
+   <FORM name="theForm" action="ConfirmRequest.asp" method="post" onSubmit="return validateForm(this)">
+<TABLE cellSpacing=0 cellPadding=3 width="95%" align=center 
+                  border=0>
+                    <TR>
+                      <TD class=blktext colSpan=4>Choose from our most-requested projects:</TD></TR>
+                    <tr>
+                      <TD>&nbsp;</TD>
+                      <TD class=blktext vAlign=top><A 
+                        href="javascript:SetTradeMenu('Remodel or Room Addition')">Remodel/Room Addition</A><BR><A 
+                        href="javascript:SetTradeMenu('Bath Remodeling')">Bath Remodeling</A><BR><A 
+                        href="javascript:SetTradeMenu('Kitchen Remodeling')">Kitchen Remodeling</A><BR><A 
+                        href="javascript:SetTradeMenu('Windows, Doors and Arches')">Windows, Doors and Arches</A><BR></TD>
+                      <TD>&nbsp;</TD>
+                      <TD class=blktext vAlign=top><A 
+                        href="javascript:SetTradeMenu('Custom Cabinets-Kitchen')">Custom Cabinets - Kitchen</A><BR><A 
+                        href="javascript:SetTradeMenu('Custom Woodwork-Entertainment Center')">Custom Woodwork - Entertainment Center</A><BR><A 
+                        href="javascript:SetTradeMenu('Custom Woodwork-Other')">Custom Woodwork - Other</A><BR><A 
+                        href="javascript:SetTradeMenu('Whole House Remodel')">Whole House Remodel</A><BR></TD>
+                      </TR>
+					  </TABLE>
+                  <P>
+                  <TABLE cellSpacing=1 cellPadding=2 width="95%" border=0>
+                    <TR>
+                      <TD width="200" class=blktext align=left><B>Or choose from 
+                        our project list:</B></TD>
+                      <TD><SELECT name="Project">
+					  <OPTION  selected>Select a Project
+					  <OPTION >------------------------------------------------
+						  <OPTION value="Bath Remodeling">Bathroom Remodeling
+						  <OPTION value="Cabinets-Build and Install">Cabinets - Build and Install
+						  <OPTION value="Cabinets-Install Only">Cabinets - Install Only
+						  <OPTION value="Carpentry">Carpentry
+						  <OPTION value="Closets and Storage">Closets and Storage
+						  <OPTION value="Countertops">Countertops
+						  <OPTION value="Custom Cabinets-Kitchen">Custom Cabinets-Kitchen
+						  <OPTION value="Custom Woodwork-Entertainment Center">Custom Woodwork-Entertainment Center
+						  <OPTION value="Custom Woodwork-Other">Custom Woodwork-Other
+						  <OPTION value="Kitchen Remodeling">Kitchen Remodeling
+						  <OPTION value="Painting and Wallcovering">Painting and Wallcovering
+						  <OPTION value="Remodel or Room Addition">Remodeling and Room Additions
+						  <OPTION value="Tile and Stone">Tile and Stone
+						  <OPTION value="Whole House Remodel">Whole House Remodel
+						  <OPTION value="Windows, Doors and Arches">Windows, Doors and Arches
+						  </OPTION></SELECT> </TD></TR>
+                    <TR>
+                      <TD class=blktext align=left><B>Design Status:</B> </TD>
+                      <TD><SELECT name="Status">
+					  <OPTION selected>Select Design Status
+					  <OPTION value="Design not required">Design not required
+					  <OPTION value="Custom design completed">Custom design completed
+					  <OPTION value="Custom design in process">Custom design in process
+					  <OPTION value="Would like AR to create custom design">Would like AR to create custom 3D design
+					  <OPTION value="Need help finding an architect">Need help finding an architect/designer
+					  <OPTION value="Have predrawn stock blueprints">Have predrawn stock blueprints
+					  </OPTION>
+					</SELECT> </TD></TR>
+                    <TR>
+                      <TD class=blktext align=left><B>Preferred Start Date:</B></TD>
+                      <TD>
+					  <SELECT name="StartDate">
+					   <OPTION selected>Preferred Start Date
+					   <OPTION value="Within 1 month">Within 1 month
+					   <OPTION value="1-2 months">in 1-2 months
+					   <OPTION value="2-3 months">In 2-3 months
+					   <OPTION value="3-6 months">In 3-6 months
+					   <OPTION value="6 or more months">In 6 or more months</OPTION>
+					   </SELECT> </TD></TR>
+                    <TR>
+                      <TD class=blktext align=left><B>My timing is flexible:</B></TD>
+                      <TD class=blktext><INPUT type=radio value="Yes" name="TimingFlexible"> Yes 
+                        &nbsp;&nbsp; 
+						<INPUT type=radio value="No" name="TimingFlexible"> No 
+						</TD></TR>
+                    <TR>
+                      <TD class=blktext align=left><B>I am working with
+					  other<BR>contractor(s):</B></TD>
+                      <TD class=blktext><INPUT type=radio value="Yes" name="HaveNames"> Yes 
+                        &nbsp;&nbsp; <INPUT type=radio value="No" name="HaveNames"> 
+                        No </TD></TR>
+                    <TR>
+                      <TD class=blktext align=left><B>I have already 
+                        received<BR>a bid on this project:</B></TD>
+                      <TD class=blktext><INPUT type=radio value="Yes" name="HaveBid"> Yes 
+                        &nbsp;&nbsp; <INPUT type=radio value="No" name="HaveBid"> 
+                        No </TD></TR>
+					<TR>
+                      <TD class=blktext align=left><B>Detailed Project Description:</B></TD>
+                      <TD><textarea rows=5 size=30 style="width:425px" name="description"></textarea></TD></TR>
+                    <TR>
+                      <TD class=blktext align=left><B>Project Address:</B></TD>
+                      <TD><INPUT name="address" size="30" style="width:425px" > </TD></TR>
+                    <TR>	
+                      <TD class=blktext align=left><B>City, State:</B></TD>
+                      <TD><INPUT name="city" size="30" style="width:425px" > </TD></TR>
+                    <TR>	
+                      <TD class=blktext align=left><B>Project Zip Code:</B></TD>
+                      <TD><INPUT maxLength=5 size=5 name="zip"> </TD></TR>
+                    <TR>
+                      <TD colSpan=2>&nbsp;</TD></TR>
+					  </TABLE>
+
+<P class="section"><B>Next: Tell us how to contact you</B></P>
+   <BR>
+   <TABLE cellSpacing=1 cellPadding=2 width="95%" border=0 align="center">
+                    <TR>
+                      <TD width="200" class=blktext align=left><B>First Name:</B></TD>
+					  <td width="150"><input name="fname"></td>
+					  <TD width="100" class=blktext align=left><B>Last Name:</B></TD>
+					  <td><input name="lname"></td>
+					  </TR>
+					  <tr>
+					  <TD class=blktext align=left><B>Phone Number:</B></TD>
+					  <td><input name="phone"></td>
+					  <TD class=blktext align=left>Alternate Phone:</TD>
+					  <td><input name="alternate"></td>
+					  </tr>
+					  <tr>
+					  <TD class=blktext align=left><B>Best Time to Call:</B></TD>
+					  <td colspan=3><input name="besttime"></td>
+					  </tr>
+					  <TR>
+                      <TD class=blktext align=left>E-Mail Address:</TD>
+					  <td><input name="email"></td>
+					  <TD class=blktext align=left>Fax Number:</TD>
+					  <td><input name="fax"></td>
+					  </TR>
+					  <TR>
+                      <TD class=blktext align=left>How did you hear about us:</TD>
+					  <td class=blktext align=left colspan=5><input type="checkbox" name="Source" value="ImproveNet">ImproveNet&nbsp;&nbsp;<input type="checkbox" name="Source" value="Internet Search">Internet Search&nbsp;&nbsp;<input type="checkbox" name="Source" value="Advertisement">Advertisement&nbsp;&nbsp;<input type="checkbox" name="Source" value="Referral">Referral</td>
+					</TR>
+					<TR>
+                      <TD class=blktext align=left width="200">If someone referred you, please tell us who to thank:</td>
+					<td class=blktext align=left colspan=5><input name="referred"></td>
+					  </TR>
+                    <TR>
+                      <TD align=center colSpan=4><INPUT type=submit value="  Submit  " name=Submit> 
+                      </TD></TR>
+					  </TABLE>
+					  <BR>
+					  </form>
+                 </td>
+</tr></table>
+
+                  <SCRIPT language=Javascript>
+<!--
+
+function SubmitForm(theArg)
+{
+	document.theForm.Next.value=theArg
+	document.theForm.submit()
+}
+function CheckElements()
+{
+	var i,theField,theValue,theCurField
+	var sRet=''
+	
+	for (i=0;i<FieldNames.length;i++)
+	{
+		//alert (eval('document.theForm.'+FieldNames[i]))
+		if (eval('document.theForm.'+FieldNames[i])!=null)
+		{
+			theCurField='document.theForm.'+FieldNames[i]
+			theField=eval(theCurField)
+
+			if (typeof(theField)=='object')
+			{
+				
+				theValue=FieldValues[i]
+				if (theField.type==null && theField.length > 0)
+				{
+					if (theField[0].type=='checkbox' | theField[0].type=='radio')
+					{
+						
+						UpdateCheckbox(theField,theValue)
+					}
+				}
+				else if (theField.type=='select-one')
+				{
+					SetMenu(theField,theValue)
+				}
+				else if (theField.type=='hidden' | theField.type=='text' | theField.type=='textarea')
+				{
+					theField.value=theValue
+				}
+				else if (theField.type=='checkbox' | theField.type=='radio')
+				{
+					UpdateCheckbox(theField,theValue)
+				}
+			}
+		}
+	
+	}
+}
+function GetValue(sFieldName)
+{
+	var i
+	
+	for (i=0;i<FieldNames.length;i++)
+	{
+		if (FieldNames[i]==sFieldName)
+		{
+			return FieldValues[i]
+			break;
+		}
+	}
+	return ''
+}
+function SetMenu(theMenu,theVal)
+{
+	var i
+	
+	for (i=0;i<theMenu.length;i++)
+	{
+		if (theMenu.options[i].value==theVal)
+		{
+			theMenu.options[i].selected=true
+			break;
+		}
+	}
+}
+
+function UpdateCheckbox(theField,theValue)
+{
+	var i
+
+	if ((eval(theField[0])!=null) && (theField.length > 0))
+	{
+		for (i=0;i<theField.length;i++)
+		{
+			if (theField[i].value==theValue)
+			{
+				theField[i].checked=true
+			}
+		}
+	}
+	else if (theField.value==theValue)
+	{
+		theField.checked=true	
+	}
+}
+//-->
+</SCRIPT>
+</body>
+</html>
+
+
