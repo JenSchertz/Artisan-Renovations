@@ -28,6 +28,7 @@ This project reflects hands-on experience with:
 - Customer engagement
 - Web hosting
 - Website security
+- Search Engine Optimization (SEO)
 - Production support and troubleshooting
 - Small business technology leadership
 
